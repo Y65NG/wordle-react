@@ -1,0 +1,72 @@
+/* Header */
+nav {
+  text-align: center;
+}
+
+/* Board */
+.board {
+  width: fit-content;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+.row {
+  display: flex;
+}
+
+.letter {
+  border: 2px solid rgb(105, 103, 103);
+  border-radius: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 1px 2px;
+  height: 50px;
+  width: 50px;
+
+  /* padding: auto 0; */
+  font-size: 1.6em;
+}
+
+.green {
+  background-color: rgb(35, 150, 89);
+}
+
+.yellow {
+  background-color: rgb(231, 231, 31);
+}
+
+.red {
+  background-color: rgb(184, 47, 47);
+}
+
+.none {
+  background-color: darkgrey;
+}
+
+/* Keyboard */
+.line {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+.key {
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid rgb(105, 103, 103);
+  border-radius: 3px;
+  background-color: darkgrey;
+  height: 40px;
+  width: 30px;
+}
+
+.key.big {
+  width: fit-content;
+  padding: 0 5px;
+}
