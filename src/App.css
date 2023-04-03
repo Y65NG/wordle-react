@@ -1,6 +1,21 @@
 /* Header */
 nav {
   text-align: center;
+  font-size: larger;
+}
+
+/* Start Page */
+.start-page {
+  width: fit-content;
+  margin: auto;
+}
+.start-page > button {
+  background-color: darkgrey;
+  padding: 10px 20px;
+  border: 2px solid grey;
+  border-radius: 5px;
+  font-size: large;
+  color: black;
 }
 
 /* Board */
@@ -83,4 +98,35 @@ nav {
 .key.wrong {
   background-color: grey;
   color: grey;
+}
+
+/* Game Over */
+.over {
+  text-align: center;
+  font-size: 2em;
+  border-radius: 7px;
+  padding: 5px;
+  width: fit-content;
+  margin: auto;
+  /* font-weight: bold; */
+}
+
+.over.win {
+  background-color: rgb(35, 150, 89);
+}
+
+.over.lose {
+  background-color: rgb(184, 47, 47);
+}
+
+.restart {
+  background-color: darkgrey;
+  padding: 10px 20px;
+  border: 2px solid grey;
+  border-radius: 5px;
+  font-size: large;
+  color: black;
+  margin: auto;
+  display: block;
+  margin-top: 30px;
 }

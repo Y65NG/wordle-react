@@ -3,6 +3,8 @@ import Board from "./components/Board"
 import Keyboard from "./components/Keyboard"
 import { boardDefault } from "./words"
 import wordlist from "./wordlist"
+import GameStart from "./components/GameStart"
+import GameOver from "./components/GameOver"
 
 export const AppContext = createContext()
 
@@ -21,6 +23,25 @@ function App() {
   const [board, setBoard] = useState(boardDefault)
   const [curPos, setCurPos] = useState({ row: 0, col: 0 })
   const [wrongLetters, setWrongLetters] = useState(new Set())
+  const [gameState, setGameState] = useState({ state: 0, isCorrect: false })
+  console.log(secret)
+  function restart() {
+    setSecret(filteredList[Math.floor(Math.random() * filteredList.length)])
+    setRowNumber(secret.length + 1)
+    const newSecret = secret
+    const newRowNumber = rowNumber
+
+    setWrongLetters(new Set())
+    setGameState({ state: 1, isCorrect: false })
+    setCurPos({ row: 0, col: 0 })
+
+    console.log(secret, rowNumber)
+    setBoard(
+      new Array(newRowNumber).fill().map((item) => {
+        return new Array(newSecret.length).fill("")
+      })
+    )
+  }
 
   function onAddLetter(keyVal) {
     if (curPos.col >= secret.length) return
@@ -45,7 +66,13 @@ function App() {
   function onEnter() {
     if (curPos.col !== secret.length || board[curPos.row][curPos.col] === "")
       return
-
+    console.log(gameState)
+    if (board[curPos.row].join("") === secret.toUpperCase()) {
+      setGameState({ isCorrect: true, state: 2 })
+    } else if (curPos.row === rowNumber - 1) {
+      setGameState({ isCorrect: false, state: 2 })
+    }
+    console.log("after", gameState)
     setWrongLetters((prevList) => {
       const newWrongLetters = board[curPos.row].filter(
         (letter) => !secret.includes(letter.toLowerCase())
@@ -79,10 +106,24 @@ function App() {
           onDelete,
           onEnter,
           wrongLetters,
+          gameState,
+          setGameState,
+          restart,
         }}
       >
-        <Board />
-        <Keyboard />
+        {gameState.state === 0 ? (
+          <GameStart />
+        ) : gameState.state === 1 ? (
+          <div className="game">
+            <Board />
+            <Keyboard />
+          </div>
+        ) : (
+          <div className="game">
+            <Board />
+            <GameOver />
+          </div>
+        )}
       </AppContext.Provider>
     </div>
   )
