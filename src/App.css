@@ -46,11 +46,15 @@ nav {
 }
 
 /* Keyboard */
+.keyboard {
+  /* margin: 10px; */
+  padding: 10px;
+}
 .line {
   display: flex;
   justify-content: center;
-  gap: 5px;
-  margin-bottom: 5px;
+  gap: 3px;
+  margin-bottom: 3px;
 }
 
 .key {
@@ -66,7 +70,17 @@ nav {
   width: 30px;
 }
 
+.key:active {
+  background-color: grey;
+}
+
 .key.big {
   width: fit-content;
   padding: 0 5px;
+  font-weight: bold;
+}
+
+.key.wrong {
+  background-color: grey;
+  color: grey;
 }

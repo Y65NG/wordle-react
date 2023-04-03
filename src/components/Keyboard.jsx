@@ -8,7 +8,8 @@ function Keyboard() {
     line2: ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
     line3: ["Z", "X", "C", "V", "B", "N", "M"],
   }
-  const { onAddLetter, onDelete, onEnter } = useContext(AppContext)
+  const { onAddLetter, onDelete, onEnter, wrongLetters } =
+    useContext(AppContext)
 
   function isLetter(letter) {
     return (
@@ -22,7 +23,10 @@ function Keyboard() {
       onEnter()
     } else if (event.key === "Backspace") {
       onDelete()
-    } else if (isLetter(event.key.toUpperCase())) {
+    } else if (
+      isLetter(event.key.toUpperCase()) &&
+      !wrongLetters.has(event.key.toUpperCase())
+    ) {
       onAddLetter(event.key.toUpperCase())
     }
   })
@@ -47,11 +51,13 @@ function Keyboard() {
       </div>
 
       <div className="line btm">
-        <Key keyVal={"ENTER"} bigKey={true} />
         {keys.line3.map((key, index) => (
           <Key keyVal={key} key={index} />
         ))}
         <Key keyVal={"DELETE"} bigKey={true} />
+      </div>
+      <div className="line enter">
+        <Key keyVal={"ENTER"} bigKey={true} />
       </div>
     </div>
   )

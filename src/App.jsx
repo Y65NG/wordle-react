@@ -2,14 +2,25 @@ import React, { createContext, useState } from "react"
 import Board from "./components/Board"
 import Keyboard from "./components/Keyboard"
 import { boardDefault } from "./words"
+import wordlist from "./wordlist"
 
 export const AppContext = createContext()
 
 function App() {
+  const filteredList = wordlist.filter(
+    (word) => word.length > 4 && word.length < 7
+  )
+  const [secret, setSecret] = useState(
+    filteredList[Math.floor(Math.random() * filteredList.length)]
+  )
+  const [rowNumber, setRowNumber] = useState(secret.length + 1)
+
+  const boardDefault = new Array(rowNumber).fill().map((item) => {
+    return new Array(secret.length).fill("")
+  })
   const [board, setBoard] = useState(boardDefault)
   const [curPos, setCurPos] = useState({ row: 0, col: 0 })
-  const [rowNumber, setRowNumber] = useState(7)
-  const [secret, setSecret] = useState("words")
+  const [wrongLetters, setWrongLetters] = useState(new Set())
 
   function onAddLetter(keyVal) {
     if (curPos.col >= secret.length) return
@@ -32,15 +43,23 @@ function App() {
     setBoard(newBoard)
   }
   function onEnter() {
-    const newBoard = [...board]
-    if (curPos.col !== secret.length || newBoard[curPos.row][curPos.col] === "")
+    if (curPos.col !== secret.length || board[curPos.row][curPos.col] === "")
       return
+
+    setWrongLetters((prevList) => {
+      const newWrongLetters = board[curPos.row].filter(
+        (letter) => !secret.includes(letter.toLowerCase())
+      )
+      return new Set([...prevList, ...newWrongLetters])
+    })
+    console.log(wrongLetters)
 
     setCurPos({
       row: curPos.row + 1,
       col: 0,
     })
   }
+
   return (
     <div className="container">
       <nav>
@@ -59,6 +78,7 @@ function App() {
           onAddLetter,
           onDelete,
           onEnter,
+          wrongLetters,
         }}
       >
         <Board />

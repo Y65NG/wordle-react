@@ -2,9 +2,10 @@ import React, { useContext } from "react"
 import { AppContext } from "../App"
 
 function Key({ keyVal, bigKey }) {
-  const { onAddLetter, onEnter, onDelete } = useContext(AppContext)
+  const { onAddLetter, onEnter, onDelete, wrongLetters } =
+    useContext(AppContext)
   function handleClick(event) {
-    if (!bigKey) {
+    if (!bigKey && !wrongLetters.has(keyVal)) {
       onAddLetter(keyVal)
     } else if (keyVal === "ENTER") {
       onEnter()
@@ -14,8 +15,13 @@ function Key({ keyVal, bigKey }) {
   }
 
   return (
-    <div className={`key ${bigKey && "big"}`} onClick={handleClick}>
-      {keyVal}
+    <div
+      className={`key ${bigKey && "big"} ${
+        wrongLetters.has(keyVal) && "wrong"
+      }`}
+      onClick={handleClick}
+    >
+      {keyVal === "DELETE" ? "DEL" : keyVal}
     </div>
   )
 }
