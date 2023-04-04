@@ -7,14 +7,16 @@ nav {
 /* User Guide */
 .guide {
   position: absolute;
-  left: 10%;
-  right: 10%;
+  left: 5%;
+  right: 5%;
   top: 50px;
-  margin-bottom: 50px;
+  /* bottom: 10%; */
+  /* margin-bottom: 50px; */
   padding: 20px 30px;
   background-color: rgb(230, 229, 229);
   border: 2px solid grey;
   border-radius: 10px;
+  overflow: hidden;
   /* width: 200px; */
   /* height: 200px; */
 }
