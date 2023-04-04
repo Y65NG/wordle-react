@@ -8,14 +8,15 @@ function GameOver() {
     <div>
       {gameState.isCorrect ? (
         <div className="over win">
-          Congradulations! The secret word is {secret}
+          Congradulations! The secret word is{" "}
+          <span className="bold">{secret.toUpperCase()}</span>
         </div>
       ) : (
         <div className="over lose">Game Over. The secret word is {secret}</div>
       )}
-      {/* <button className="restart" onClick={restart}>
+      <button className="restart" onClick={restart}>
         Restart
-      </button> */}
+      </button>
     </div>
   )
 }

@@ -5,17 +5,16 @@ import { boardDefault } from "./words"
 import wordlist from "./wordlist"
 import GameStart from "./components/GameStart"
 import GameOver from "./components/GameOver"
+import UserGuide from "./components/UserGuide"
 
 export const AppContext = createContext()
 
 function App() {
-  const filteredList = wordlist.filter(
-    (word) => word.length > 4 && word.length < 7
-  )
+  const filteredList = wordlist.filter((word) => word.length == 5)
   const [secret, setSecret] = useState(
     filteredList[Math.floor(Math.random() * filteredList.length)]
   )
-  const [rowNumber, setRowNumber] = useState(secret.length + 1)
+  const [rowNumber, setRowNumber] = useState(6)
 
   const boardDefault = new Array(rowNumber).fill().map((item) => {
     return new Array(secret.length).fill("")
@@ -24,12 +23,11 @@ function App() {
   const [curPos, setCurPos] = useState({ row: 0, col: 0 })
   const [wrongLetters, setWrongLetters] = useState(new Set())
   const [gameState, setGameState] = useState({ state: 0, isCorrect: false })
-  console.log(secret)
+  const [showGuide, setShowGuide] = useState(true)
+
   function restart() {
     setSecret(filteredList[Math.floor(Math.random() * filteredList.length)])
     setRowNumber(secret.length + 1)
-    const newSecret = secret
-    const newRowNumber = rowNumber
 
     setWrongLetters(new Set())
     setGameState({ state: 1, isCorrect: false })
@@ -37,10 +35,14 @@ function App() {
 
     console.log(secret, rowNumber)
     setBoard(
-      new Array(newRowNumber).fill().map((item) => {
-        return new Array(newSecret.length).fill("")
+      new Array(rowNumber).fill().map((item) => {
+        return new Array(secret.length).fill("")
       })
     )
+  }
+
+  function toggleGuide() {
+    setShowGuide((prevState) => !prevState)
   }
 
   function onAddLetter(keyVal) {
@@ -109,10 +111,14 @@ function App() {
           gameState,
           setGameState,
           restart,
+          toggleGuide,
         }}
       >
         {gameState.state === 0 ? (
-          <GameStart />
+          <div>
+            <GameStart />
+            {showGuide && <UserGuide />}
+          </div>
         ) : gameState.state === 1 ? (
           <div className="game">
             <Board />
