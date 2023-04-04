@@ -16,6 +16,7 @@ function GameStart() {
     <div className="start-page">
       <div className="difficulty">
         <div className="diff-choice">
+          <legend>Difficulty</legend>
           <input
             type="radio"
             id="diff-easy"
