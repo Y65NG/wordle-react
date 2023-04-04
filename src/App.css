@@ -131,6 +131,10 @@ legend {
   color: black;
 }
 
+.start-page > button:active {
+  background-color: grey;
+}
+
 /* Board */
 .board {
   user-select: none;
