@@ -24,7 +24,7 @@ function GameStart() {
             onChange={handleDifficulty}
           />
           <label htmlFor="diff-easy" className="for">
-            Easy
+            {language ? "Easy" : "简单"}
           </label>
         </div>
         <div className="diff-choice">
@@ -36,7 +36,7 @@ function GameStart() {
             onChange={handleDifficulty}
           />
           <label htmlFor="diff-medium" className="for">
-            Medium
+            {language ? "Medium" : "中等"}
           </label>
         </div>
         <div className="diff-choice">
@@ -48,7 +48,7 @@ function GameStart() {
             onChange={handleDifficulty}
           />
           <label htmlFor="diff-hard" className="for">
-            Hard
+            {language ? "Hard" : "困难"}
           </label>
         </div>
       </div>
