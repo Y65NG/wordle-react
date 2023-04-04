@@ -10,7 +10,7 @@ function GameOver() {
         <div className="over win">
           {language
             ? "Congradulations! The secret word is "
-            : "你赢了！正确的单词就是 "}
+            : "你赢了！正确的单词是 "}
           <span className="bold">{secret}</span>
         </div>
       ) : (
