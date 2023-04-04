@@ -2,23 +2,27 @@ import React, { useContext } from "react"
 import { AppContext } from "../App"
 
 function GameOver() {
-  const { gameState, secret, restart } = useContext(AppContext)
+  const { gameState, secret, restart, language } = useContext(AppContext)
   console.log(gameState)
   return (
     <div>
       {gameState.isCorrect ? (
         <div className="over win">
-          Congradulations! The secret word is{" "}
+          {language
+            ? "Congradulations! The secret word is "
+            : "你赢了！正确的单词就是 "}
           <span className="bold">{secret.toUpperCase()}</span>
         </div>
       ) : (
         <div className="over lose">
-          Game Over. The secret word is{" "}
+          {language
+            ? "Game Over. The secret word is "
+            : "你输了，正确的单词是 "}
           <span className="bold">{secret.toUpperCase()}</span>
         </div>
       )}
       <button className="restart" onClick={restart}>
-        Restart
+        {language ? "Restart" : "重新开始"}
       </button>
     </div>
   )

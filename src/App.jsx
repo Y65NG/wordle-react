@@ -6,6 +6,7 @@ import wordlist from "./wordlist"
 import GameStart from "./components/GameStart"
 import GameOver from "./components/GameOver"
 import UserGuide from "./components/UserGuide"
+import guideIcon from "./assets/open-book.png"
 
 export const AppContext = createContext()
 
@@ -24,6 +25,7 @@ function App() {
   const [wrongLetters, setWrongLetters] = useState(new Set())
   const [gameState, setGameState] = useState({ state: 0, isCorrect: false })
   const [showGuide, setShowGuide] = useState(true)
+  const [language, setLanguage] = useState(true)
 
   function restart() {
     setSecret(filteredList[Math.floor(Math.random() * filteredList.length)])
@@ -43,6 +45,10 @@ function App() {
 
   function toggleGuide() {
     setShowGuide((prevState) => !prevState)
+  }
+
+  function toggleLanguage() {
+    setLanguage((prevLang) => !prevLang)
   }
 
   function onAddLetter(keyVal) {
@@ -93,11 +99,14 @@ function App() {
     <div className="container">
       <nav>
         <h1>Wordle</h1>
+        <div className={`language`} onClick={toggleLanguage}>
+          {language ? "中" : "Eng"}
+        </div>
         <div
           className={`guide-btn ${showGuide ? "darken" : ""}`}
           onClick={toggleGuide}
         >
-          Guide
+          <img className="guide-icon" src={guideIcon}></img>
         </div>
       </nav>
       <AppContext.Provider
@@ -118,6 +127,7 @@ function App() {
           setGameState,
           restart,
           toggleGuide,
+          language,
         }}
       >
         {gameState.state === 0 ? (

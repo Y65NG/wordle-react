@@ -2,7 +2,7 @@ import React, { useContext } from "react"
 import { AppContext } from "../App"
 
 function GameStart() {
-  const { gameState, setGameState } = useContext(AppContext)
+  const { gameState, setGameState, language } = useContext(AppContext)
   return (
     <div className="start-page">
       <button
@@ -10,7 +10,7 @@ function GameStart() {
           setGameState({ isCorrect: false, state: 1 })
         }}
       >
-        Start
+        {language ? "Start" : "开始游戏"}
       </button>
     </div>
   )

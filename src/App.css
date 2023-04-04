@@ -5,9 +5,23 @@ nav {
   font-size: larger;
 }
 
+.language {
+  position: absolute;
+  top: 0;
+  right: 65px;
+  background-color: rgb(209, 208, 208);
+  padding: 2px 6px;
+  border: 2px solid grey;
+  border-radius: 5px;
+  cursor: pointer;
+  user-select: none;
+  padding-top: 4px;
+  height: 29px;
+}
+
 /* User Guide */
 .guide-btn {
-  right: 35px;
+  right: 15px;
   top: 0;
   position: absolute;
   cursor: pointer;
@@ -16,6 +30,12 @@ nav {
   padding: 5px 10px;
   border: 2px solid grey;
   border-radius: 5px;
+  /* height: ; */
+}
+
+.guide-icon {
+  width: 20px;
+  /* padding: 0; */
 }
 
 .guide {
