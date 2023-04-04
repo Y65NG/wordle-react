@@ -12,7 +12,10 @@ function GameOver() {
           <span className="bold">{secret.toUpperCase()}</span>
         </div>
       ) : (
-        <div className="over lose">Game Over. The secret word is {secret}</div>
+        <div className="over lose">
+          Game Over. The secret word is{" "}
+          <span className="bold">{secret.toUpperCase()}</span>
+        </div>
       )}
       <button className="restart" onClick={restart}>
         Restart
