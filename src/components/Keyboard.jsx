@@ -32,9 +32,9 @@ function Keyboard() {
   })
 
   useEffect(() => {
-    document.addEventListener("keyup", handleKeyboard)
+    document.addEventListener("keydown", handleKeyboard)
     return () => {
-      document.removeEventListener("keyup", handleKeyboard)
+      document.removeEventListener("keydown", handleKeyboard)
     }
   }, [handleKeyboard])
   return (
