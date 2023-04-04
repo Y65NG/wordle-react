@@ -1,8 +1,7 @@
 import React, { createContext, useState } from "react"
 import Board from "./components/Board"
 import Keyboard from "./components/Keyboard"
-import { boardDefault } from "./words"
-import wordlist from "./wordlist"
+import { advancedWords, toeflWords } from "./wordlist"
 import GameStart from "./components/GameStart"
 import GameOver from "./components/GameOver"
 import UserGuide from "./components/UserGuide"
@@ -11,14 +10,13 @@ import guideIcon from "./assets/open-book.png"
 export const AppContext = createContext()
 
 function App() {
-  const filteredList = wordlist.filter((word) => word.length == 5)
-  const [secret, setSecret] = useState(
-    filteredList[Math.floor(Math.random() * filteredList.length)]
-  )
+  // const filteredList = wordlist.filter((word) => word.length == 5)
+  const [difficulty, setDifficulty] = useState(0) // 0 for easy, 1 for medium, 2 for hard
+  const [secret, setSecret] = useState("*****")
   const [rowNumber, setRowNumber] = useState(6)
 
   const boardDefault = new Array(rowNumber).fill().map((item) => {
-    return new Array(secret.length).fill("")
+    return new Array(5).fill("")
   })
   const [board, setBoard] = useState(boardDefault)
   const [curPos, setCurPos] = useState({ row: 0, col: 0 })
@@ -28,11 +26,11 @@ function App() {
   const [language, setLanguage] = useState(true)
 
   function restart() {
-    setSecret(filteredList[Math.floor(Math.random() * filteredList.length)])
+    // setSecret(filteredList[Math.floor(Math.random() * filteredList.length)])
     setRowNumber(secret.length + 1)
 
     setWrongLetters(new Set())
-    setGameState({ state: 1, isCorrect: false })
+    setGameState({ state: 0, isCorrect: false })
     setCurPos({ row: 0, col: 0 })
 
     console.log(secret, rowNumber)
@@ -43,6 +41,28 @@ function App() {
     )
   }
 
+  function findSecretList(diff) {
+    let wordList
+    // console.log(difficulty)
+    switch (diff) {
+      case 0:
+        wordList = toeflWords.filter((word) => word.length === 5)
+        break
+      case 1:
+        wordList = advancedWords.filter(
+          (word) => word.length === new Set([...word]).size
+        )
+        break
+      case 2:
+        wordList = advancedWords.filter(
+          (word) => word.length > new Set([...word]).size
+        )
+        // console.log(wordList)
+        break
+    }
+    return wordList
+  }
+
   function toggleGuide() {
     setShowGuide((prevState) => !prevState)
   }
@@ -51,7 +71,14 @@ function App() {
     setLanguage((prevLang) => !prevLang)
   }
 
+  function handleDifficulty(event) {
+    const { id } = event.target
+    setDifficulty(id === "diff-easy" ? 0 : id === "diff-medium" ? 1 : 2)
+    // console.log(difficulty)
+  }
+
   function onAddLetter(keyVal) {
+    // console.log(secret)
     if (curPos.col >= secret.length) return
     const newBoard = [...board]
     newBoard[curPos.row][curPos.col] = keyVal
@@ -74,7 +101,7 @@ function App() {
   function onEnter() {
     if (curPos.col !== secret.length || board[curPos.row][curPos.col] === "")
       return
-    console.log(gameState)
+    // console.log(gameState)
     if (board[curPos.row].join("") === secret) {
       setGameState({ isCorrect: true, state: 2 })
     } else if (curPos.row === rowNumber - 1) {
@@ -87,7 +114,7 @@ function App() {
       )
       return new Set([...prevList, ...newWrongLetters])
     })
-    console.log(wrongLetters)
+    // console.log(wrongLetters)
 
     setCurPos({
       row: curPos.row + 1,
@@ -128,6 +155,9 @@ function App() {
           restart,
           toggleGuide,
           language,
+          difficulty,
+          handleDifficulty,
+          findSecretList,
         }}
       >
         {gameState.state === 0 ? (

@@ -85,7 +85,25 @@ section > .margin-bottom {
   width: fit-content;
   margin: auto;
 }
+
+.difficulty {
+  margin-bottom: 20px;
+  border: 2px solid grey;
+  border-radius: 5px;
+  padding: 20px 40px;
+}
+
+.diff-choice {
+  margin-bottom: 10px;
+  font-size: large;
+}
+.diff-choice:last-child {
+  margin-bottom: 0;
+}
+
 .start-page > button {
+  display: block;
+  margin: auto;
   background-color: rgb(209, 208, 208);
   padding: 10px 20px;
   border: 2px solid grey;
