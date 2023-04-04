@@ -75,15 +75,15 @@ function App() {
     if (curPos.col !== secret.length || board[curPos.row][curPos.col] === "")
       return
     console.log(gameState)
-    if (board[curPos.row].join("") === secret.toUpperCase()) {
+    if (board[curPos.row].join("") === secret) {
       setGameState({ isCorrect: true, state: 2 })
     } else if (curPos.row === rowNumber - 1) {
       setGameState({ isCorrect: false, state: 2 })
     }
-    console.log("after", gameState)
+    // console.log("after", gameState)
     setWrongLetters((prevList) => {
       const newWrongLetters = board[curPos.row].filter(
-        (letter) => !secret.includes(letter.toLowerCase())
+        (letter) => !secret.includes(letter)
       )
       return new Set([...prevList, ...newWrongLetters])
     })

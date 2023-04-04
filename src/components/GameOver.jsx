@@ -11,14 +11,14 @@ function GameOver() {
           {language
             ? "Congradulations! The secret word is "
             : "你赢了！正确的单词就是 "}
-          <span className="bold">{secret.toUpperCase()}</span>
+          <span className="bold">{secret}</span>
         </div>
       ) : (
         <div className="over lose">
           {language
             ? "Game Over. The secret word is "
             : "你输了，正确的单词是 "}
-          <span className="bold">{secret.toUpperCase()}</span>
+          <span className="bold">{secret}</span>
         </div>
       )}
       <button className="restart" onClick={restart}>

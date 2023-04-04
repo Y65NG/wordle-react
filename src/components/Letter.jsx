@@ -7,9 +7,9 @@ function Letter({ letterPos, attemptVal }) {
   const color =
     letter === ""
       ? "none"
-      : letter === secret.slice(letterPos, letterPos + 1).toUpperCase()
+      : letter === secret.slice(letterPos, letterPos + 1)
       ? "green"
-      : secret.includes(letter.toLowerCase())
+      : secret.includes(letter)
       ? "yellow"
       : "red"
 
