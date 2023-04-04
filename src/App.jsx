@@ -173,6 +173,7 @@ function App() {
           </div>
         ) : (
           <div className="game">
+            {showGuide && <UserGuide />}
             <Board />
             <GameOver />
           </div>
