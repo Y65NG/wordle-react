@@ -93,6 +93,12 @@ function App() {
     <div className="container">
       <nav>
         <h1>Wordle</h1>
+        <div
+          className={`guide-btn ${showGuide ? "darken" : ""}`}
+          onClick={toggleGuide}
+        >
+          Guide
+        </div>
       </nav>
       <AppContext.Provider
         value={{
@@ -121,6 +127,7 @@ function App() {
           </div>
         ) : gameState.state === 1 ? (
           <div className="game">
+            {showGuide && <UserGuide />}
             <Board />
             <Keyboard />
           </div>

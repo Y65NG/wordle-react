@@ -1,10 +1,23 @@
 /* Header */
 nav {
+  position: relative;
   text-align: center;
   font-size: larger;
 }
 
 /* User Guide */
+.guide-btn {
+  right: 35px;
+  top: 0;
+  position: absolute;
+  cursor: pointer;
+  user-select: none;
+  background-color: rgb(209, 208, 208);
+  padding: 5px 10px;
+  border: 2px solid grey;
+  border-radius: 5px;
+}
+
 .guide {
   position: absolute;
   left: 5%;
@@ -16,9 +29,12 @@ nav {
   background-color: rgb(230, 229, 229);
   border: 2px solid grey;
   border-radius: 10px;
-  overflow: hidden;
   /* width: 200px; */
   /* height: 200px; */
+}
+
+.darken {
+  background-color: rgb(139, 139, 139);
 }
 
 .close-btn {
@@ -30,6 +46,10 @@ nav {
   border: 2px solid grey;
   border-radius: 5px;
   padding: 0 4px;
+}
+
+.close-btn:active {
+  background-color: grey;
 }
 
 .bold {
