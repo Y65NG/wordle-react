@@ -28,14 +28,14 @@ function UserGuide() {
           &#x2022; <span className="bold">"W"</span> 这个字母在正确的位置
         </p>
         <div className="row">
-          <div className="letter">P</div>
-          <div className="letter yellow">I</div>
-          <div className="letter">L</div>
-          <div className="letter">L</div>
           <div className="letter">S</div>
+          <div className="letter yellow">T</div>
+          <div className="letter">A</div>
+          <div className="letter">R</div>
+          <div className="letter">T</div>
         </div>
         <p className="margin-bottom">
-          &#x2022; <span className="bold">"I"</span>{" "}
+          &#x2022; <span className="bold">"T"</span>{" "}
           这个字母在答案中有但不在正确的位置
         </p>
         <div className="row">
