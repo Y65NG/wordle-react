@@ -89,14 +89,14 @@ section > .margin-bottom {
 
 legend {
   position: absolute;
-  top: -11px;
+  top: -12px;
   left: 20%;
   font-weight: bold;
   /* font-style: italic; */
   font-size: 1em;
   background-color: white;
   z-index: 1;
-  margin-bottom: 10px;
+  /* margin-bottom: 15px; */
 }
 
 .difficulty {
@@ -106,7 +106,8 @@ legend {
   margin-bottom: 20px;
   border: 2px solid grey;
   border-radius: 5px;
-  padding: 20px 40px;
+  padding: 25px 40px;
+  padding-bottom: 20px;
   padding-left: 20px;
 }
 
